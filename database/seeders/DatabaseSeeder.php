@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            Workspace_templates::class
+            Workspace_templates::class,
+            FeatureSeeder::class
+
         ]);
     }
 }

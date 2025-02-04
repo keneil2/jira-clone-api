@@ -8,7 +8,6 @@ use App\Models\Workspace;
         $userId=auth()->user()->id;
 
         $workspace=Workspace::where("user_id",$userId)->get();
-// dd();
         if($workspace->isEmpty()){
            return false;
         }

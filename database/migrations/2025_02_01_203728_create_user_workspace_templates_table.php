@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_workspace_templates', function (Blueprint $table) {
             $table->id();
-            $table->name("name");
+            $table->string("name");
             $table->json("features");
             $table->json("columns");
             $table->foreignId("user_id")->references("id")->on("users");
