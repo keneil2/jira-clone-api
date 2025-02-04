@@ -114,7 +114,7 @@ foreach($workspace_templates as $template){
         "name"=>$template["name"],
         "ideal_for"=>$template["ideal_for"],
         "description"=>$template["descrition"],
-        "default_config"=>$template['default_config']
+        "default_config"=>json_encode($template['default_config'])
     ]);
 
 }
