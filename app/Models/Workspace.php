@@ -8,6 +8,9 @@ class Workspace extends Model
 {
     protected $fillable=[
   "name",
+  "project_template_id",
+  "description",
+  "user_id"
   
     ];
 }
