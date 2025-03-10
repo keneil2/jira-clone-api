@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\ProjectTemplate;
 use App\Models\WorkspaceTemplate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class Workspace_templates extends Seeder
+class ProjectTemplateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -110,10 +111,10 @@ class Workspace_templates extends Seeder
 
         ];
 foreach($workspace_templates as $template){
-    WorkspaceTemplate::create([
+    ProjectTemplate::create([
         "name"=>$template["name"],
         "ideal_for"=>$template["ideal_for"],
-        "description"=>$template["descrition"],
+        "description"=>$template["description"],
         "default_config"=>json_encode($template['default_config'])
     ]);
 

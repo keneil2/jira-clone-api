@@ -58,7 +58,7 @@ class FeatureSeeder extends Seeder
 
      foreach($features as $feature){
       Feature::create([
-     "name"=>$feature
+     "feature_name"=>$feature
       ]);
      }
     }
