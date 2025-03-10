@@ -16,26 +16,19 @@ return [
     */
 
     'paths' => ['*', 'sanctum/csrf-cookie'],
+    'allowed_methods' => ['*'],
 
-    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    'allowed_origins' => ['*'],
+    
+    'allowed_origins_patterns' => ["http://localhost:5173"],
+    
+    'allowed_headers' => ['*'],
 
-    'allowed_origins' => ['http://localhost:5173'],
-
-    'allowed_origins_patterns' => [],
-
-    'allowed_headers' => [
-        'Accept',
-        'Content-Type',
-        'X-Requested-With',
-        'X-CSRF-TOKEN',
-        'Authorization',
-        'X-Custom-Header'
-    ],
-
-    'exposed_headers' => ['Authorization', 'X-Custom-Header'],
+    'exposed_headers' => ['Authorization' ,'X-Custom-Header'],
 
     'max_age' => 0,
 
     'supports_credentials' => true,
+    'Access-Control-Allow-Credentials'=>true
 
 ];
