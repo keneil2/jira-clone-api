@@ -11,13 +11,17 @@ class WorkspaceController extends Controller
     public function create(Request $request){
       $request->validate([
         "workspace_name"=>['string','required'],
-          'description'=>["string","nullable"]
+          'description'=>["string","nullable"],
       ]);
 
-      Workspace::create([
-        "name"=>$request->workspace,
-        'description'=>$request->description
+      $newWorkSpace = Workspace::create([ 
+        "name"=>$request->workspace_name,
+        "user_id"=>auth()->user()->id,
+        'description'=>$request->description,
       ]);
-
+      
+     return [
+      "workspace"=>$newWorkSpace
+     ];
     }
 }
