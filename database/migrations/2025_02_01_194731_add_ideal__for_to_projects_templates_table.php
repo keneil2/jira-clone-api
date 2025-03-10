@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('workspace_templates', function (Blueprint $table) {
-            //
+        Schema::table('project_templates', function (Blueprint $table) {
+            $table->text('ideal_for');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('workspace_templates', function (Blueprint $table) {
-            $table->text('ideal_for');
+        Schema::table('project_templates', function (Blueprint $table) {
+            $table->dropColumn('ideal_for');
         });
     }
 };

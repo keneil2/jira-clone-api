@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workspace_template_features', function (Blueprint $table) {
+        Schema::create('project_template_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("workspace_template_id")->references("id")->on("workspace_templates");
+            $table->foreignId("project_template_id")->references("id")->on("project_templates");
             $table->foreignId("feature_id")->references("id")->on("features");
             $table->boolean("enabled")->default(true);
             $table->json('default_config')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workspace_template_features');
+        Schema::dropIfExists('project_template_features');
     }
 };

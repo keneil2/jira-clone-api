@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_workspace_templates', function (Blueprint $table) {
+        Schema::create('user_project_templates', function (Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->json("features");
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_workspace_templates');
+        Schema::dropIfExists('user_project_templates');
     }
 };

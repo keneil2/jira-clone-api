@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->foreignId("project_templates_id")->references("id")->on('project_templates')->cascadeOnDelete();
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+           $table->text("description")->nullable()->change(); 
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->text("description")->change();
+        });
     }
 };

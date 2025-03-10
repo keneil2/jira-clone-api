@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workspace_templates', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->json('default_config');
-            $table->timestamps();
+        Schema::table('workspaces', function (Blueprint $table) {
+            $table->text("description")->nullable()->change();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workspace_templates');
+        Schema::table('workspaces', function (Blueprint $table) {
+            $table->dropColumn("description"); 
+        });
     }
 };
