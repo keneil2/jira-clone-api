@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -15,15 +16,16 @@ class AuthController extends Controller
     public function register(Request $request)
     { 
         $request->validate([
-            'name'=>"string|required|min:5",
+            'name'=>"required|min:5|unique:users,name|alpha_dash|unique:users,name",
             'email' => "email|required|unique:users,email",
             "password" => "required|string|regex:/^[a-zA-z0-9]+[\*\!\?%]*$/|min:5|confirmed"
         ]);
-       
+          $mention_slug= "@". Str::slug(str_replace(" ","_",$request->name));
         $user=User::create([
             'name'=>$request->name,
             "email"=>$request->email,
-            "password"=>$request->password
+            "password"=>$request->password,
+            "mention_slug"=> $mention_slug,
         ]);
 
         $token=$user->createToken('authToken')->plainTextToken;
