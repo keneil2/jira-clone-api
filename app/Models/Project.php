@@ -14,4 +14,12 @@ class Project extends Model
         "description",
         "workspace_id"
     ];
+    public function user(){
+   return $this->hasMany(ProjectUser::class)->with("users");
+    }
+
+    public function template(){
+        return $this->belongsTo(ProjectTemplate::class,'project_template_id')->with(["templatefeatures"]);
+    }
+    
 }
