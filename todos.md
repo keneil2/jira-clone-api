@@ -18,3 +18,6 @@
   - UI to create teams and assign users
 
  // scope for next week is to allow users/ admin to create users/ add users
+
+
+ -- look at project userController and ProjectControlle the getUser function might be duplicated
