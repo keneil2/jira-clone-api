@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+          "mention_slug"
     ];
 
     /**
@@ -44,6 +45,10 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+          
         ];
+    }
+    public function projects(){
+       return $this->belongTo(ProjectUser::class);
     }
 }
