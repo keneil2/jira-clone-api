@@ -14,63 +14,63 @@ class ProjectTemplateFeatureSeeder extends Seeder
      */
     public function run(): void
     {
-        $workspace_template_features = [
+        $project_template_features = [
             [
-                "workspace_templates_id" => 1,
+                "project_templates_id" => 1,
                 "feature_id" => 1,
             ],
 
             [
-                "workspace_templates_id" => 1,
+                "project_templates_id" => 1,
                 "feature_id" => 1,
             ],
             [
-                "workspace_templates_id" => 1,
+                "project_templates_id" => 1,
                 "feature_id" => 2,
             ],
             [
-                "workspace_templates_id" => 1,
+                "project_templates_id" => 1,
                 "feature_id" => 3,
             ],
 
             [
-                "workspace_templates_id" => 2,
+                "project_templates_id" => 2,
                 "feature_id" => 4,
             ],
             [
-                "workspace_templates_id" => 2,
+                "project_templates_id" => 2,
                 "feature_id" => 5,
             ],
             [
-                "workspace_templates_id" => 2,
+                "project_templates_id" => 2,
                 "feature_id" => 6,
             ],
             [
-                "workspace_templates_id" => 2,
+                "project_templates_id" => 2,
                 "feature_id" => 7,
             ],
             [
-                "workspace_templates_id" => 2,
+                "project_templates_id" => 2,
                 "feature_id" => 8,
             ],
             [
-                "workspace_templates_id" => 3,
+                "project_templates_id" => 3,
                 "feature_id" => 9,
             ],
             [
-                "workspace_templates_id" => 3,
+                "project_templates_id" => 3,
                 "feature_id" => 10,
             ],
             [
-                "workspace_templates_id" => 3,
+                "project_templates_id" => 3,
                 "feature_id" => 11,
             ],
 
         ];
-        foreach ($workspace_template_features as $feature) {
+        foreach ($project_template_features as $feature) {
             ProjectTemplateFeature::create([
-                "project_template_id" => $feature["workspace_templates_id"],
-                "feature_id" => $feature["feature_id"]
+                "project_template_id" => $feature["project_templates_id"],
+                "feature_id" => $feature["feature_id"],
             ]);
         }
 

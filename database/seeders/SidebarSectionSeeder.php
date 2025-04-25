@@ -3,18 +3,17 @@
 namespace Database\Seeders;
 
 use App\Models\Feature;
+use App\Models\SidebarSection;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Log;
 
-class FeatureSeeder extends Seeder
+class SidebarSectionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-     $features=[
-     "drag_and_drop" => "Tasks",
+
+  public function addSections(){
+      $features = [ 
+            "drag_and_drop" => "Tasks",
             "work_in_progress_limits" => "Tasks",
             "focus_on_continuous_delivery" => "Releases",
             "backlog_management" => "Planning",
@@ -54,13 +53,33 @@ class FeatureSeeder extends Seeder
             "custom_feilds" => "Customization",
             "automation_rules" => "Customization",
             "custom_notifications" => "Customization"
-     ];
+        ];
+        
 
-     foreach($features as $feature=> $section){
-      Feature::create([
-     "feature_name"=>$feature,
-
-      ]);
+     foreach($features as $feature => $section){
+        $sidebar=SidebarSection::where("section_name",$section)->get();
+      Feature::where("feature_name",$feature)->update(["sidebar_section_id"=>$sidebar[0]->id]);
      }
+    }
+  
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $sections=[
+            "Planning",
+            "Tasks",
+            "Milestones",
+            "Releases",
+            "Review",
+            "Customization"
+        ];
+        foreach($sections as $section){
+          SidebarSection::create([
+            "section_name"=>$section,
+          ]);
+        }
+       $this->addSections();
     }
 }
