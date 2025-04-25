@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectTemplateFeature extends Model
 {
     protected $fillable = [
-        "workspace_template_id",
+        "project_template_id",
         "feature_id"
     ];
+
+    public function feature(){
+   return  $this->belongsTo(Feature::class,"feature_id")->with("section");
+    }
+    public function template(){
+        return $this->hasMany(ProjectTemplate::class); 
+        }
 }
