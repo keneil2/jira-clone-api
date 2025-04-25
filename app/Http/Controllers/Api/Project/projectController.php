@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Project;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\ProjectUser;
 use App\Models\Workspace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -45,9 +46,9 @@ class projectController extends Controller
             "workspace_id"=>$request->workspace_id
         ]);
 
-        return [
+        return response()->json([
             "success_message" => "Project Created Successfully"
-        ];
+        ]);
     }
 
 
@@ -59,11 +60,37 @@ class projectController extends Controller
     // get workspace_id
     $workspace = Workspace::where("user_id",auth()->user()->id)->get("id");
    Log::debug("workspace Id: $workspace");
-     $userProject = Project::all()->where("workspace_id",$workspace[0]["id"]);
-     return [
-"projects"=> $userProject,
- 
-"message"=>"project retrived successfully"
-     ];
+     $userProject = Project::with("user")->where("workspace_id",$workspace[0]["id"])->get();
+     return response()->json([
+ "projects" => $userProject,
+ "message" => "project retrived successfully"
+     ]);
+  }
+
+  public function getProjectById($projectID){
+    $project =Project::with("template")->where("id",$projectID)->get();
+    if($project->isEmpty()){
+     return response(404)->json([
+        "message"=>"project not found"
+     ]);
+    }
+    return response()->json([
+        "project"=>$project,
+        "message"=>"project retrieved successfully"
+    ]);
+  }
+
+
+
+  /**
+   * get users that belong to a project
+   * @return 
+   */
+  public function getUsers($project_id){
+    $members = ProjectUser::where("Project_id",$project_id)->get();
+    return response()->json([
+        "project"=>$members,
+        "message"=>"members fetch successFully"
+    ]);
   }
 }
