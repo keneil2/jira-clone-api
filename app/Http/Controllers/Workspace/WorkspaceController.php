@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Workspace;
 
 use App\Http\Controllers\Controller;
 use App\Models\Workspace;
+use App\Models\WorkspaceUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class WorkspaceController extends Controller
 {
@@ -23,5 +25,12 @@ class WorkspaceController extends Controller
      return [
       "workspace"=>$newWorkSpace
      ];
+    }
+
+
+    public function getWorkspaceUsers( $workspace_id){
+         if(is_integer($workspace_id)){
+        $workspaceUsers = WorkspaceUser::with("users")->where("workspace_id","=",$workspace_id)->get();
+         }
     }
 }
