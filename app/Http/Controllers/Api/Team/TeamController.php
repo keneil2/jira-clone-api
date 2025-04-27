@@ -9,6 +9,7 @@ use App\Models\Team;
 use App\Models\TeamUser;
 use App\Models\User;
 use AppendIterator;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -56,5 +57,30 @@ class TeamController extends Controller
          $teams=Team::where("workspace_id","=",$workspace_id)->get()->toArray();
 
          return ApiResponse::ok($teams,"teams fetched succesfully");
+    }
+
+    public function addUser($request){
+     $request->validate([
+      "user_id"=>"integer|required",
+      "role"=>"string|required",
+      "project_id"=>"integer|nullable",
+      "team_id"=>"integer|nullable"
+     ]);
+
+     // next add the user to the Teams table
+     // check if user should go to team or project
+
+     if($request->team_id){
+  // to implement
+     }else if($request->team_id==null){
+       validator()->failed();
+       // throw validator failed error with some messgaes
+     }
+     
+     if($request->project_id){
+// to implement
+     }else if($request->project_id){
+ // throw validator failed error with some messgaes
+     }
     }
 }
