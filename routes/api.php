@@ -56,6 +56,7 @@ Route::prefix("user")->group(function(){
 Route::prefix("team")->group(function(){
     Route::post("create",[TeamController::class,"createTeam"]);
     Route::get("/{workspace_id}",[TeamController::class,"getTeams"]);
+    Route::post("user/add",[TeamController::class,"addUser"]);
 });
 
 
