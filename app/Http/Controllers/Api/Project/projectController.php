@@ -87,9 +87,9 @@ class projectController extends Controller
    * @return 
    */
   public function getUsers($project_id){
-    $members = ProjectUser::where("Project_id",$project_id)->get();
+    $members = ProjectUser::where("Project_id", $project_id)->with("users")->get();
     return response()->json([
-        "project"=>$members,
+        "project_users"=>$members,
         "message"=>"members fetch successFully"
     ]);
   }
