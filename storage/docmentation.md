@@ -365,3 +365,57 @@
 - **Ideal For:**  
   Organizations with unique processes that do not fit into standard templates.
 
+
+
+
+
+// task types and their meanings 
+:
+
+🔧 Development-Focused Task Types:
+Bug – For reporting issues or defects.
+
+Feature – New functionality to be built.
+
+Improvement – Enhancements to existing features.
+
+Technical Debt – Cleanup tasks, refactoring, etc.
+
+Spike – Time-boxed research or exploration tasks.
+
+Code Review – Tasks related to reviewing pull requests or changes.
+
+🎯 Project & Product Management:
+Task – Generic task, default option.
+
+Story – Describes a user-centric feature or requirement (Agile).
+
+Epic – Large body of work that can be broken into multiple stories or tasks.
+
+Sub-task – A part of a bigger task, useful for breakdowns.
+
+📢 Design, Marketing & Content:
+Design – UI/UX design work, wireframes, prototypes.
+
+Content – Blog posts, documentation, copywriting.
+
+Campaign – Marketing campaigns, usually spanning multiple channels.
+
+SEO – Tasks related to search engine optimization.
+
+Research – Market or user research.
+
+🧪 QA / Testing:
+Test Case – Defines a test scenario.
+
+Regression Test – Used in recurring QA testing cycles.
+
+UAT – User Acceptance Testing task.
+
+⚙️ Operations & Support:
+Support Request – Internal or customer-facing issues.
+
+Maintenance – Server updates, scheduled downtime tasks.
+
+DevOps – Infrastructure and deployment tasks.
+
