@@ -67,7 +67,7 @@ class TeamController extends Controller
   public function addUser(Request $request)
   {
     $request->validate([
-      "user_id" => "integer|required|unique:team_users,user_id",
+      "user_id" => "integer|required",
       "role_id" => "integer|required",
       "project_id" => "integer|nullable",
       "team_id" => "integer|nullable"
@@ -78,6 +78,19 @@ class TeamController extends Controller
       // throw validator failed error with some messgaes
       throw ValidationException::withMessages([
         "project_id" => ["Select at least one place to add this user"]
+      ]);
+    }
+    $projectFound=ProjectUser::where("user_id",$request->user_id)->where("project_id",$request->project_id)->exists();
+       
+    if($projectFound && $request->team_id == null){
+      throw ValidationException::withMessages([
+        "project_id" => ["user already exist in this project"]
+      ]);
+    }
+    $teamFound=TeamUser::where("user_id",$request->user_id)->where("team_id",$request->team_id)->exists();
+    if( $teamFound && $request->project_id == null){
+      throw ValidationException::withMessages([
+        "project_id" => ["user already exist in this team"]
       ]);
     }
     try {
@@ -97,22 +110,19 @@ class TeamController extends Controller
 
       if ($request->project_id) {
         // to implement
-        $project=ProjectUser::firstOrcreate([
+        $project=ProjectUser::create([
           "project_id" => $request->project_id,
           "user_id" => $request->user_id,
         ]);
-        if($project){
-          throw ValidationException::withMessages([
-            "project_id" => ["user already exist"]
-          ]);
-        }
       }
-      ApiResponse::ok();
+   
 
-      DB::commit();
+      DB::commit(); 
+      return  ApiResponse::ok($project?->toArray() ??  $team?->toArray(),"created Succefully");
     } catch (\Exception $e) {
       Log::error($e);
       DB::rollBack();
+     return  ApiResponse::serverError();
     }
 
   }
