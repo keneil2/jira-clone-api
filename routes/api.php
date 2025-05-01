@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Project\projectController;
 use App\Http\Controllers\Api\Role\RoleController;
+use App\Http\Controllers\Api\Task\TaskController;
 use App\Http\Controllers\Api\Team\TeamController;
 use App\Http\Controllers\Api\user\UserController;
 use App\Http\Controllers\AuthController;
@@ -36,7 +37,7 @@ Route::prefix("project")->group(function(){
 Route::get("/user-projects",[projectController::class,"getUserProject"]);
 Route::get("/{projectID}",[projectController::class,"getProjectById"]);
 Route::get("/{projectID}/members",[projectController::class,"getUsers"]);
-Route::get("/{projectID}/create-task",[projectController::class,"getUsers"]);
+Route::get("/{projectID}/create-task",[TaskController::class,"create"]);
 
 });
 
