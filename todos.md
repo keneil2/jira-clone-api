@@ -21,3 +21,5 @@
 
 
  -- look at project userController and ProjectControlle the getUser function might be duplicated
+
+--> we need to add a function to the project / TaskAPi to create Task and getTaskTypes then ensure that we can actually create task sucessfully # 30th of April 2025
