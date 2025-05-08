@@ -37,7 +37,7 @@ Route::prefix("project")->group(function(){
 Route::get("/user-projects",[projectController::class,"getUserProject"]);
 Route::get("/{projectID}",[projectController::class,"getProjectById"]);
 Route::get("/{projectID}/members",[projectController::class,"getUsers"]);
-Route::get("/{projectID}/create-task",[TaskController::class,"create"]);
+Route::post("/{projectID}/create/task",[TaskController::class,"create"]);
 
 });
 
@@ -59,7 +59,9 @@ Route::prefix("team")->group(function(){
     Route::get("/{workspace_id}",[TeamController::class,"getTeams"]);
     Route::post("user/add",[TeamController::class,"addUser"]);
 });
-
+Route::prefix('tasks')->group(function(){
+Route::get("types",[TaskController::class,"getTaskTypes"]);
+});
 
 });
 

@@ -23,3 +23,6 @@
  -- look at project userController and ProjectControlle the getUser function might be duplicated
 
 --> we need to add a function to the project / TaskAPi to create Task and getTaskTypes then ensure that we can actually create task sucessfully # 30th of April 2025
+
+
+# look into task Status and ensure task is showing up in the right column based and status basically make it like kanban board in any card update
